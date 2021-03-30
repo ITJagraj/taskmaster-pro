@@ -10,6 +10,10 @@ var createTask = function(taskText, taskDate, taskList) {
     .addClass("m-1")
     .text(taskText);
 
+    var taskP = $("<p>")
+    .addClass("m-1")
+    .text(taskText);
+
   // append span and p element to parent li
   taskLi.append(taskSpan, taskP);
 
@@ -33,7 +37,6 @@ var loadTasks = function() {
 
   // loop over object properties
   $.each(tasks, function(list, arr) {
-    console.log(list, arr);
     // then loop over sub-array
     arr.forEach(function(task) {
       createTask(task.text, task.date, list);
@@ -79,6 +82,11 @@ $("#task-form-modal .btn-primary").click(function() {
     });
 
     saveTasks();
+    $(".list-group").on("click", "p", function() {
+      var text = $(this)
+        .text()
+        .trim();
+    });
   }
 });
 
